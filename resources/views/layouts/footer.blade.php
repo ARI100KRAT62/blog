@@ -42,13 +42,13 @@
 
 <!-- SCRIPTS -->
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/particles.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/jquery.parallax.js"></script>
-<script src="js/smoothscroll.js"></script>
-<script src="js/custom.js"></script>
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/particles.min.js') }}"></script>
+<script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.parallax.js') }}"></script>
+<script src="{{ asset('assets/js/smoothscroll.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 
 </body>
 </html>

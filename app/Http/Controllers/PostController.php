@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View|Application|Factory
     {
         $posts = Post::query()->where('is_published', '=', true)->get();
 
-        //return view('posts', ['posts'=>$posts]);
-        return view('posts', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -37,9 +41,13 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post): string|Post
+    public function show(Post $post): View|Application|Factory|string
     {
-        return $post->is_published ? $post: 'Нет такого поста';
+        if (!$post->is_published) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -63,6 +71,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
     }
 }

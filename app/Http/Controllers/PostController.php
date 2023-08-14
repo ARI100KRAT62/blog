@@ -41,7 +41,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post): View|Application|Factory|string
+    public function show(Post $post): View|Application|Factory
     {
         if (!$post->is_published) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
@@ -53,9 +53,9 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Post $post): View|Application|Factory
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**

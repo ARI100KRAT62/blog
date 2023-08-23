@@ -29,8 +29,11 @@
     </label>
 
     <button type="submit">Сохранить</button>
-</form>
-
+    <form action="{{ route('posts.destroy', [$post]) }}" method="post">
+        @csrf
+        @method('delete')
+        <button type="submit" class="btn">Удалить</button>
+    </form>
 <script>
     ClassicEditor
         .create( document.querySelector( '#content' ) )
